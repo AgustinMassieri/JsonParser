@@ -261,7 +261,7 @@ write_members([(Llave, json_array(Elements))], Out) :-
     write(Out, " : "),
     write_JSON(json_array(Elements), Out).
 
-% Caso recursivo -> more than just a member
+% Caso recursivo -> mas de solo un numero
 write_members([(Llave, Valor) | Members], Out) :-
     !,
     write_members([(Llave, Valor)], Out),
@@ -373,7 +373,7 @@ parse_int(List, Integer, MoreInput) :-
     skip_space(List, [0'+ | Rest]),
     !,
     parse_int1(Rest, ListNum, MoreInput),
-    ListNum \= [], % it means that we haven't found a number
+    ListNum \= [], %no encontramos un numero
     number_codes(Integer, ListNum).
 
 % Caso en el que el número tiene signo negativo
@@ -381,7 +381,7 @@ parse_int(List, Integer, MoreInput) :-
     skip_space(List, [0'- | Rest]),
     !,
     parse_int1(Rest, ListNum, MoreInput),
-    ListNum \= [], % it means that we haven't found a number
+    ListNum \= [], %no encontramos un numero
     number_codes(Integer1, ListNum),
     Integer is Integer1 * (-1).
    
@@ -390,7 +390,7 @@ parse_int(List, Integer, MoreInput) :-
     skip_space(List, List1),
     !,
     parse_int1(List1, ListNum, MoreInput),
-    ListNum \= [], % it means that we haven't found a number
+    ListNum \= [], % no encontramos un numero
     number_codes(Integer, ListNum).
     
 % Caso recursivo -> cada vez que X es un dígito, es
